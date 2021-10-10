@@ -10,7 +10,6 @@ from pyrogram.types import Message, Voice
 from services.callsmusic import callsmusic, queues
 
 import services.converter
-from services.downloaders import youtube
 
 from config import BOT_NAME as bn, DURATION_LIMIT, UPDATES_CHANNEL, BG_IMAGE, SUPPORT_GROUP
 from helpers.filters import command, other_filters
@@ -54,8 +53,6 @@ async def stream(_, message: Message):
             (await message.reply_to_message.download(file_name))
             if not path.isfile(path.join("downloads", file_name)) else file_name
         )
-    elif url:
-        file_path = await converter.convert(youtube.download(url))
     else:
         return await lel.edit_text("𝐒𝐨𝐧𝐠 𝐧𝐨𝐭 𝐟𝐨𝐮𝐧𝐝.𝐓𝐫𝐲 𝐚𝐧𝐨𝐭𝐡𝐞𝐫 𝐬𝐨𝐧𝐠 𝐨𝐫 𝐦𝐚𝐲𝐛𝐞 𝐬𝐩𝐞𝐥𝐥 𝐢𝐭 𝐩𝐫𝐨𝐩𝐞𝐫𝐥𝐲.")
 
